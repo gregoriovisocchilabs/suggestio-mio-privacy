@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidade - Suggestio Mio</title>
+    <style>
+        :root {
+            --bg-color: #181B25;
+            --text-color: #E0E0E0;
+            --accent-color: #00D9FF;
+            --heading-color: #FFFFFF;
+            --link-color: #00D9FF;
+            --border-color: #2A2D3A;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            padding: 20px;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        h1 { color: var(--heading-color); font-size: 2rem; margin-bottom: 10px; border-bottom: 2px solid var(--accent-color); padding-bottom: 15px; }
+        h2 { color: var(--heading-color); font-size: 1.4rem; margin-top: 35px; margin-bottom: 15px; }
+        h3 { color: var(--accent-color); font-size: 1.1rem; margin-top: 20px; margin-bottom: 10px; }
+        p { margin-bottom: 15px; }
+        ul { margin-left: 25px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; }
+        a { color: var(--link-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .date { color: #888; font-size: 0.9rem; margin-bottom: 30px; }
+        .lang-switch { text-align: right; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+        .lang-switch a { padding: 6px 12px; border: 1px solid var(--border-color); border-radius: 5px; font-size: 0.85rem; }
+        .lang-switch a.active { border-color: var(--accent-color); background: rgba(0,217,255,0.1); }
+        .contact { background: var(--border-color); padding: 20px; border-radius: 8px; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <a href="index.html">PL</a>
+            <a href="privacy-en.html">EN</a>
+            <a href="privacy-it.html">IT</a>
+            <a href="privacy-fr.html">FR</a>
+            <a href="privacy-de.html">DE</a>
+            <a href="privacy-es.html">ES</a>
+            <a href="privacy-pt.html" class="active">PT</a>
+        </div>
+
+        <h1>Política de Privacidade - Suggestio Mio</h1>
+        <p class="date">Última atualização: 2026-01-27</p>
+
+        <h2>1. Responsável pelo tratamento</h2>
+        <p>O responsável pelo tratamento de dados é Gregorio Visocchi Labs.<br>
+        Contacto: <a href="mailto:GregorioVisocchiLabs@gmail.com">GregorioVisocchiLabs@gmail.com</a></p>
+
+        <h2>2. Âmbito e natureza da aplicação</h2>
+        <p>Suggestio Mio é uma aplicação para criar conjuntos de opções e realizar sorteios aleatórios.
+        A aplicação não requer conta e não regista utilizadores.
+        Opcionalmente, pode usar o login do Google exclusivamente para criar uma cópia de segurança no Google Drive.</p>
+
+        <h2>3. Que dados processamos</h2>
+
+        <h3>3.1 Dados armazenados localmente (no dispositivo)</h3>
+        <ul>
+            <li>nomes dos conjuntos e lista de opções,</li>
+            <li>configurações dos conjuntos (ex. sorteio com/sem repetição, bloqueio temporal),</li>
+            <li>histórico de sorteios.</li>
+        </ul>
+        <p>Estes dados são armazenados localmente numa base de dados SQLite e não são sincronizados automaticamente com a nuvem.
+        O utilizador pode opcionalmente criar uma cópia de segurança no Google Drive.</p>
+
+        <h3>3.2 Microfone (reconhecimento de voz)</h3>
+        <p>A aplicação pode solicitar acesso ao microfone para permitir o ditado de nomes de conjuntos e opções.
+        As gravações não são armazenadas pela aplicação.</p>
+
+        <h3>3.3 Cópia de segurança na nuvem (Google Drive)</h3>
+        <p>A cópia de segurança é opcional e realizada a pedido do utilizador.
+        Requer login através do Google Sign-In. O ficheiro de cópia de segurança (ex. suggestio_mio_backup.json)
+        é guardado no Google Drive do utilizador. A aplicação não tem acesso a outros ficheiros no seu Drive.</p>
+        <p>O Google pode processar dados da conta (ex. identificador e endereço de e-mail) como parte do processo de login.
+        Não armazenamos estes dados nos nossos servidores.</p>
+
+        <h3>3.4 Publicidade - Google AdMob</h3>
+        <p>A aplicação utiliza o SDK do Google AdMob. Em relação à exibição de anúncios, o Google pode processar:</p>
+        <ul>
+            <li>identificador de publicidade do dispositivo,</li>
+            <li>endereço IP,</li>
+            <li>dados do dispositivo e sistema operativo,</li>
+            <li>informações sobre interações com os anúncios.</li>
+        </ul>
+        <p>Detalhes: <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+
+        <h2>4. Finalidades e bases legais do tratamento (RGPD)</h2>
+        <ul>
+            <li><strong>Prestação do serviço</strong> (Art. 6(1)(b) RGPD): dados locais necessários para a funcionalidade da aplicação.</li>
+            <li><strong>Consentimento</strong> (Art. 6(1)(a) RGPD): para anúncios personalizados, se ativados de acordo com as configurações e consentimentos do utilizador.</li>
+            <li><strong>Interesse legítimo</strong> (Art. 6(1)(f) RGPD): exibição de anúncios não personalizados e manutenção do financiamento da aplicação.</li>
+            <li><strong>Cópia de segurança no Google Drive</strong> (Art. 6(1)(b) ou (a) RGPD): a pedido explícito do utilizador.</li>
+        </ul>
+
+        <h2>5. Partilha de dados</h2>
+        <p>Não vendemos nem partilhamos dados pessoais com terceiros.
+        A exceção são os dados processados pelo Google através do Google AdMob e Google Drive/Google Sign-In,
+        se o utilizador usar a cópia de segurança na nuvem.</p>
+
+        <h2>6. Transferência de dados para fora do EEE</h2>
+        <p>O Google pode processar dados fora do Espaço Económico Europeu.
+        As transferências são realizadas de acordo com os mecanismos exigidos por lei,
+        os detalhes estão disponíveis na política do Google.</p>
+
+        <h2>7. Período de retenção</h2>
+        <ul>
+            <li>Os dados locais são conservados até serem eliminados pelo utilizador ou até a aplicação ser desinstalada.</li>
+            <li>Os dados publicitários são conservados de acordo com as políticas do Google.</li>
+            <li>O ficheiro de cópia de segurança no Google Drive é conservado até ser eliminado pelo utilizador.</li>
+        </ul>
+
+        <h2>8. Direitos do utilizador</h2>
+        <p>Tem o direito de:</p>
+        <ul>
+            <li>aceder aos seus dados,</li>
+            <li>retificar os seus dados,</li>
+            <li>eliminar os seus dados,</li>
+            <li>limitar o tratamento,</li>
+            <li>portabilidade dos dados (para dados locais),</li>
+            <li>opor-se ao tratamento,</li>
+            <li>retirar o consentimento (sem afetar a licitude do tratamento antes da retirada).</li>
+        </ul>
+        <p>Também tem o direito de apresentar uma queixa junto de uma autoridade de controlo.</p>
+
+        <h2>9. Segurança</h2>
+        <p>Os dados do utilizador são armazenados localmente no dispositivo. A aplicação não transmite dados do utilizador para os nossos servidores.
+        Os dados só podem ser transmitidos para os serviços do Google para publicidade (AdMob) e cópia de segurança (Google Drive),
+        se o utilizador usar estas funcionalidades.</p>
+
+        <h2>10. Crianças</h2>
+        <p>A aplicação não é dirigida a crianças com menos de 13 anos.
+        Se é pai/tutor e acredita que o seu filho forneceu dados, contacte-nos.</p>
+
+        <h2>11. Alterações à política</h2>
+        <p>As alterações a esta política serão publicadas neste documento através da atualização da data.</p>
+
+        <div class="contact">
+            <h3>Contacto</h3>
+            <p>Email: <a href="mailto:GregorioVisocchiLabs@gmail.com">GregorioVisocchiLabs@gmail.com</a><br>
+            Programador: Gregorio Visocchi Labs</p>
+        </div>
+    </div>
+</body>
+</html>

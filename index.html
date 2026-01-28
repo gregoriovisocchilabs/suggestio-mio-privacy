@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polityka Prywatności - Suggestio Mio</title>
+    <style>
+        :root {
+            --bg-color: #181B25;
+            --text-color: #E0E0E0;
+            --accent-color: #00D9FF;
+            --heading-color: #FFFFFF;
+            --link-color: #00D9FF;
+            --border-color: #2A2D3A;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        h1 {
+            color: var(--heading-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 15px;
+        }
+        h2 {
+            color: var(--heading-color);
+            font-size: 1.4rem;
+            margin-top: 35px;
+            margin-bottom: 15px;
+        }
+        h3 {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        ul {
+            margin-left: 25px;
+            margin-bottom: 15px;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .date {
+            color: #888;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+        .lang-switch { text-align: right; margin-bottom: 20px; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+        .lang-switch a { padding: 6px 12px; border: 1px solid var(--border-color); border-radius: 5px; font-size: 0.85rem; }
+        .lang-switch a.active { border-color: var(--accent-color); background: rgba(0,217,255,0.1); }
+        .contact {
+            background: var(--border-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-switch">
+            <a href="index.html" class="active">PL</a>
+            <a href="privacy-en.html">EN</a>
+            <a href="privacy-it.html">IT</a>
+            <a href="privacy-fr.html">FR</a>
+            <a href="privacy-de.html">DE</a>
+            <a href="privacy-es.html">ES</a>
+            <a href="privacy-pt.html">PT</a>
+        </div>
+
+        <h1>Polityka Prywatności - Suggestio Mio</h1>
+        <p class="date">Data ostatniej aktualizacji: 2026-01-27</p>
+
+        <h2>1. Administrator danych</h2>
+        <p>Administratorem danych jest Gregorio Visocchi Labs.<br>
+        Kontakt: <a href="mailto:GregorioVisocchiLabs@gmail.com">GregorioVisocchiLabs@gmail.com</a></p>
+
+        <h2>2. Zakres i charakter aplikacji</h2>
+        <p>Suggestio Mio to aplikacja do tworzenia zestawów opcji i losowania wyników.
+        Aplikacja nie wymaga konta i nie prowadzi rejestracji użytkowników.
+        Opcjonalnie można użyć logowania Google wyłącznie do wykonania kopii zapasowej w Google Drive.</p>
+
+        <h2>3. Jakie dane przetwarzamy</h2>
+
+        <h3>3.1 Dane przechowywane lokalnie (na urządzeniu)</h3>
+        <ul>
+            <li>nazwy zestawów i lista opcji,</li>
+            <li>ustawienia zestawów (np. losowanie z/bez powtórzeń, blokada czasowa),</li>
+            <li>historia losowań.</li>
+        </ul>
+        <p>Te dane są przechowywane lokalnie w bazie SQLite i nie są synchronizowane automatycznie z chmurą.
+        Użytkownik może opcjonalnie utworzyć kopię zapasową w Google Drive.</p>
+
+        <h3>3.2 Mikrofon (rozpoznawanie mowy)</h3>
+        <p>Aplikacja może prosić o dostęp do mikrofonu, aby umożliwić dyktowanie nazw zestawów i opcji.
+        Nagrania nie są przechowywane przez aplikację.</p>
+
+        <h3>3.3 Kopia zapasowa w chmurze (Google Drive)</h3>
+        <p>Kopia zapasowa jest opcjonalna i wykonywana na życzenie użytkownika.
+        Wymaga zalogowania przez Google Sign-In. Plik kopii (np. suggestio_mio_backup.json)
+        jest zapisywany w Google Drive użytkownika. Aplikacja nie ma dostępu do innych plików w Twoim Dysku.</p>
+        <p>Google może przetwarzać dane konta (np. identyfikator i adres e-mail) w ramach logowania.
+        Nie przechowujemy tych danych na naszych serwerach.</p>
+
+        <h3>3.4 Reklamy - Google AdMob</h3>
+        <p>Aplikacja korzysta z SDK Google AdMob. W związku z wyświetlaniem reklam Google może przetwarzać m.in.:</p>
+        <ul>
+            <li>identyfikator reklamowy urządzenia,</li>
+            <li>adres IP,</li>
+            <li>dane o urządzeniu i systemie operacyjnym,</li>
+            <li>informacje o interakcji z reklamą.</li>
+        </ul>
+        <p>Szczegóły: <a href="https://policies.google.com/privacy" target="_blank">https://policies.google.com/privacy</a></p>
+
+        <h2>4. Cele i podstawy prawne przetwarzania (RODO/GDPR)</h2>
+        <ul>
+            <li><strong>Świadczenie usługi</strong> (art. 6 ust. 1 lit. b RODO): dane lokalne niezbędne do działania funkcji aplikacji.</li>
+            <li><strong>Zgoda</strong> (art. 6 ust. 1 lit. a RODO): w zakresie reklam spersonalizowanych, jeżeli zostaną włączone zgodnie z ustawieniami i zgodami użytkownika.</li>
+            <li><strong>Uzasadniony interes</strong> (art. 6 ust. 1 lit. f RODO): wyświetlanie reklam niepersonalizowanych i utrzymanie finansowania aplikacji.</li>
+            <li><strong>Kopia zapasowa w Google Drive</strong> (art. 6 ust. 1 lit. b lub a RODO): na wyraźne życzenie użytkownika.</li>
+        </ul>
+
+        <h2>5. Udostępnianie danych</h2>
+        <p>Nie sprzedajemy ani nie udostępniamy danych osobowych innym podmiotom.
+        Wyjątkiem są dane przetwarzane przez Google w ramach Google AdMob oraz Google Drive/Google Sign-In,
+        jeżeli użytkownik korzysta z kopii zapasowej w chmurze.</p>
+
+        <h2>6. Przekazywanie danych poza EOG</h2>
+        <p>Google może przetwarzać dane poza Europejskim Obszarem Gospodarczym.
+        Transfery są realizowane zgodnie z mechanizmami wymaganymi przez prawo,
+        szczegóły są dostępne w polityce Google.</p>
+
+        <h2>7. Okres przechowywania</h2>
+        <ul>
+            <li>Dane lokalne są przechowywane do czasu ich usunięcia przez użytkownika lub odinstalowania aplikacji.</li>
+            <li>Dane reklamowe są przechowywane zgodnie z politykami Google.</li>
+            <li>Plik kopii zapasowej w Google Drive jest przechowywany do czasu usunięcia go przez użytkownika.</li>
+        </ul>
+
+        <h2>8. Prawa użytkownika</h2>
+        <p>Przysługuje Ci prawo do:</p>
+        <ul>
+            <li>dostępu do danych,</li>
+            <li>sprostowania danych,</li>
+            <li>usunięcia danych,</li>
+            <li>ograniczenia przetwarzania,</li>
+            <li>przenoszenia danych (w zakresie danych lokalnych),</li>
+            <li>sprzeciwu,</li>
+            <li>cofnięcia zgody (bez wpływu na zgodność przetwarzania sprzed cofnięcia).</li>
+        </ul>
+        <p>Masz również prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych (UODO).</p>
+
+        <h2>9. Bezpieczeństwo</h2>
+        <p>Dane użytkownika przechowywane są lokalnie na urządzeniu. Aplikacja nie przesyła danych użytkownika do naszych serwerów.
+        Dane mogą być przesyłane wyłącznie do usług Google w zakresie reklam (AdMob) oraz kopii zapasowej (Google Drive),
+        jeżeli użytkownik z nich korzysta.</p>
+
+        <h2>10. Dzieci</h2>
+        <p>Aplikacja nie jest kierowana do dzieci poniżej 13 roku życia.
+        Jeśli jesteś rodzicem/opiekunem i uważasz, że dziecko przekazało dane, skontaktuj się z nami.</p>
+
+        <h2>11. Zmiany polityki</h2>
+        <p>Zmiany polityki będą publikowane w tym dokumencie poprzez aktualizację daty.</p>
+
+        <div class="contact">
+            <h3>Kontakt</h3>
+            <p>Email: <a href="mailto:GregorioVisocchiLabs@gmail.com">GregorioVisocchiLabs@gmail.com</a><br>
+            Deweloper: Gregorio Visocchi Labs</p>
+        </div>
+    </div>
+</body>
+</html>
