@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guida utente – Suggestio Mio</title>
+    <style>
+        :root { --bg: #050505; --surface: #0F172A; --card: #1E293B; --cyan: #00D9FF; --orange: #FF8C00; --pink: #FF4D6D; --navy: #002855; --text: #FFFFFF; --text2: #B3B3B3; --hint: #666666; --border: #1E293B; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text2); line-height: 1.7; }
+        a { color: var(--cyan); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .lang-bar { background: var(--surface); padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; border-bottom: 1px solid var(--border); }
+        .lang-bar a { padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 0.8rem; color: var(--text2); transition: all .2s; }
+        .lang-bar a.active { border-color: var(--cyan); color: var(--cyan); background: rgba(0,217,255,0.1); box-shadow: 0 0 8px rgba(0,217,255,0.3); }
+        .lang-bar a:hover { border-color: var(--cyan); color: var(--cyan); text-decoration: none; }
+        .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--surface) 50%, #0a0a1a 100%); padding: 60px 20px 50px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at center, rgba(0,217,255,0.08) 0%, transparent 60%); pointer-events: none; }
+        .hero-title { font-size: 2.8rem; font-weight: 800; background: linear-gradient(90deg, var(--cyan), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; letter-spacing: -1px; }
+        .hero-sub { font-size: 1.1rem; color: var(--text2); margin-bottom: 20px; }
+        .hero-badge { display: inline-block; background: rgba(0,217,255,0.1); border: 1px solid rgba(0,217,255,0.3); color: var(--cyan); padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; letter-spacing: 1px; }
+        .container { max-width: 860px; margin: 0 auto; padding: 40px 20px; }
+        .section { margin-bottom: 50px; }
+        .section-title { font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--cyan), transparent); }
+        .section-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--cyan), var(--navy)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 0 12px rgba(0,217,255,0.3); }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; transition: transform .2s, box-shadow .2s; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,217,255,0.12); border-color: rgba(0,217,255,0.3); }
+        .card-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .card-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .card-desc { font-size: 0.88rem; color: var(--text2); }
+        .steps { display: flex; flex-direction: column; gap: 16px; }
+        .step { display: flex; gap: 16px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px 20px; align-items: flex-start; }
+        .step-num { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--navy)); color: var(--bg); font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 10px rgba(0,217,255,0.4); }
+        .step-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+        .step-desc { font-size: 0.88rem; color: var(--text2); }
+        .anim-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .anim-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+        .anim-emoji { font-size: 1.5rem; }
+        .anim-name { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+        .anim-desc { font-size: 0.78rem; color: var(--hint); }
+        .privacy-box { background: linear-gradient(135deg, rgba(0,40,85,0.6), rgba(30,41,59,0.8)); border: 1px solid rgba(0,217,255,0.2); border-radius: 16px; padding: 24px; }
+        .privacy-box h3 { color: var(--cyan); font-size: 1rem; margin-bottom: 10px; }
+        .privacy-box ul { margin-left: 18px; }
+        .privacy-box li { margin-bottom: 6px; font-size: 0.9rem; }
+        .highlight { background: linear-gradient(135deg, rgba(255,140,0,0.1), rgba(255,77,109,0.05)); border: 1px solid rgba(255,140,0,0.3); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 0.9rem; color: var(--text2); }
+        .highlight strong { color: var(--orange); }
+        .tag { display: inline-block; background: rgba(0,217,255,0.1); border: 1px solid rgba(0,217,255,0.25); color: var(--cyan); padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; margin: 2px; }
+        .tag.orange { background: rgba(255,140,0,0.1); border-color: rgba(255,140,0,0.3); color: var(--orange); }
+        footer { background: var(--surface); border-top: 1px solid var(--border); padding: 30px 20px; text-align: center; color: var(--hint); font-size: 0.85rem; }
+        footer a { color: var(--cyan); }
+        @media (max-width: 600px) { .hero-title { font-size: 2rem; } .cards { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="lang-bar">
+    <a href="help-pl.html">🇵🇱 PL</a>
+    <a href="help-en.html">🇬🇧 EN</a>
+    <a href="help-de.html">🇩🇪 DE</a>
+    <a href="help-fr.html">🇫🇷 FR</a>
+    <a href="help-es.html">🇪🇸 ES</a>
+    <a href="help-it.html" class="active">🇮🇹 IT</a>
+    <a href="help-pt.html">🇵🇹 PT</a>
+</div>
+
+<div class="hero">
+    <div class="hero-title">Suggestio Mio</div>
+    <div class="hero-sub">Guida utente</div>
+    <span class="hero-badge">✦ ESTRAI · DECIDI · SCOPRI ✦</span>
+</div>
+
+<div class="container">
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">🎯</div>Informazioni sull'app</div>
+        <p><strong style="color:var(--text)">Suggestio Mio</strong> è un'app intelligente per prendere decisioni ed estrarre opzioni casualmente. Crea insiemi con qualsiasi opzione – pasti, film, attività, sfide – e lascia che l'app estragga un risultato con un'animazione spettacolare. Perfetta quando hai troppe opzioni e non riesci a scegliere!</p>
+        <div class="highlight">
+            <strong>Nessuna registrazione, nessun cloud.</strong> Tutti i tuoi dati sono memorizzati esclusivamente sul tuo dispositivo. Puoi creare insiemi ed estrarre risultati offline.
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">⚡</div>Funzioni principali</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">🎲</div><div class="card-title">Estrazione animata</div><div class="card-desc">9 stili di animazione: Carosello, Shake, Slot Machine, Roulette, Carta, Sfocatura, Ticker, Macchina da scrivere, Conto alla rovescia.</div></div>
+            <div class="card"><div class="card-icon">📦</div><div class="card-title">Insiemi di opzioni</div><div class="card-desc">Crea e modifica qualsiasi numero di insiemi. Segna i preferiti, archivia quelli inutilizzati.</div></div>
+            <div class="card"><div class="card-icon">📋</div><div class="card-title">Modelli</div><div class="card-desc">Oltre 25 insiemi pronti: pasti, film, attività, giochi, sfide, motivazione e altro.</div></div>
+            <div class="card"><div class="card-icon">📊</div><div class="card-title">Cronologia estrazioni</div><div class="card-desc">Cronologia completa per ogni insieme con data e ora.</div></div>
+            <div class="card"><div class="card-icon">🔄</div><div class="card-title">Modalità di estrazione</div><div class="card-desc">Con o senza ripetizione. La modalità senza ripetizione tiene traccia di ciò che è stato estratto.</div></div>
+            <div class="card"><div class="card-icon">💾</div><div class="card-title">Copia di sicurezza</div><div class="card-desc">Esporta e importa insiemi in JSON. Condividi copie di sicurezza tramite qualsiasi app.</div></div>
+            <div class="card"><div class="card-icon">🎤</div><div class="card-title">Input vocale</div><div class="card-desc">Aggiungi opzioni con la voce – tocca l'icona del microfono durante l'aggiunta.</div></div>
+            <div class="card"><div class="card-icon">🌐</div><div class="card-title">7 lingue</div><div class="card-desc">Polacco, inglese, francese, tedesco, spagnolo, portoghese, italiano.</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">📖</div>Come usare l'applicazione</div>
+        <div class="steps">
+            <div class="step"><div class="step-num">1</div><div><div class="step-title">Creare un nuovo insieme</div><div class="step-desc">Toccare "+" nella schermata principale o usare un modello pronto. Assegnare un nome e scegliere un colore.</div></div></div>
+            <div class="step"><div class="step-num">2</div><div><div class="step-title">Aggiungere opzioni</div><div class="step-desc">Inserire le opzioni manualmente o usare l'input vocale (icona microfono). Sono richieste almeno 2 opzioni.</div></div></div>
+            <div class="step"><div class="step-num">3</div><div><div class="step-title">Scegliere modalità e animazione</div><div class="step-desc">Selezionare la modalità di estrazione (con/senza ripetizione) e lo stile di animazione. Impostare durata e cicli.</div></div></div>
+            <div class="step"><div class="step-num">4</div><div><div class="step-title">Toccare ESTRAI</div><div class="step-desc">Premere il grande pulsante ESTRAI e osservare l'animazione. Il risultato appare al termine.</div></div></div>
+            <div class="step"><div class="step-num">5</div><div><div class="step-title">Confermare o riestrarre</div><div class="step-desc">Se la conferma è attivata, puoi accettare il risultato o estrarre di nuovo.</div></div></div>
+            <div class="step"><div class="step-num">6</div><div><div class="step-title">Controllare cronologia e stato</div><div class="step-desc">L'icona cronologia mostra tutte le estrazioni precedenti. Lo stato opzioni mostra quelle già estratte.</div></div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">✨</div>Stili di animazione</div>
+        <div class="anim-list">
+            <div class="anim-item"><div class="anim-emoji">🎠</div><div><div class="anim-name">Carosello</div><div class="anim-desc">Le carte scorrono orizzontalmente</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">🫨</div><div><div class="anim-name">Shake</div><div class="anim-desc">Le carte vibrano, emerge il vincitore</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">🎰</div><div><div class="anim-name">Slot Machine</div><div class="anim-desc">Stile slot machine</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">🎡</div><div><div class="anim-name">Roulette</div><div class="anim-desc">Ruota girevole con segmenti</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">🃏</div><div><div class="anim-name">Carta</div><div class="anim-desc">La carta si capovolge</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">🌫️</div><div><div class="anim-name">Sfocatura</div><div class="anim-desc">Il risultato emerge dalla sfocatura</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">📟</div><div><div class="anim-name">Ticker</div><div class="anim-desc">Il testo scorre come un tabellone</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">⌨️</div><div><div class="anim-name">Macchina da scrivere</div><div class="anim-desc">Il risultato appare lettera per lettera</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">⏳</div><div><div class="anim-name">Conto alla rovescia</div><div class="anim-desc">Classico 3–2–1</div></div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">🎯</div>Modalità di estrazione</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">🔁</div><div class="card-title">Con ripetizione</div><div class="card-desc">Ogni estrazione è indipendente. Qualsiasi opzione può apparire più volte. <br><br><span class="tag">Blocco intelligente</span> – la stessa opzione non apparirà tre volte di fila se un'altra è disponibile.</div></div>
+            <div class="card"><div class="card-icon">✅</div><div class="card-title">Senza ripetizione</div><div class="card-desc">Ogni opzione può essere estratta solo una volta. Dopo aver esaurito il pool puoi ripristinarlo. <br><br>La schermata di stato mostra le opzioni estratte e rimanenti.</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">⚙️</div>Impostazioni</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">🌍</div><div class="card-title">Lingua</div><div class="card-desc">Scegli una delle 7 lingue dell'interfaccia. Il cambiamento è immediato.</div></div>
+            <div class="card"><div class="card-icon">🌙</div><div class="card-title">Tema</div><div class="card-desc">Scuro, chiaro o sistema. Il tema scuro neon è quello predefinito.</div></div>
+            <div class="card"><div class="card-icon">📱</div><div class="card-title">Schermata iniziale</div><div class="card-desc">L'app può avviarsi dall'elenco degli insiemi o dall'ultimo insieme usato.</div></div>
+            <div class="card"><div class="card-icon">📳</div><div class="card-title">Vibrazione e suono</div><div class="card-desc">Attiva o disattiva le vibrazioni sui pulsanti, estrazioni e suoni di animazione.</div></div>
+            <div class="card"><div class="card-icon">🕐</div><div class="card-title">Formato ora</div><div class="card-desc">Mostra la cronologia come tempo relativo (5 min fa) o data e ora complete.</div></div>
+            <div class="card"><div class="card-icon">📜</div><div class="card-title">Limite cronologia</div><div class="card-desc">Mostra le ultime 10 voci o la cronologia completa.</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">💾</div>Copia di sicurezza e ripristino</div>
+        <div class="steps">
+            <div class="step"><div class="step-num">📤</div><div><div class="step-title">Esportare</div><div class="step-desc">In Impostazioni tocca «Esporta insiemi». Un file JSON verrà salvato o condiviso tramite la tua app di file, cloud o e-mail.</div></div></div>
+            <div class="step"><div class="step-num">📥</div><div><div class="step-title">Importare</div><div class="step-desc">Toccare «Importa insiemi» e selezionare un file JSON precedentemente esportato. Gli insiemi verranno aggiunti all'app.</div></div></div>
+        </div>
+        <div class="highlight"><strong>Suggerimento:</strong> Esegui copie di sicurezza regolarmente prima di disinstallare l'app o cambiare dispositivo – i dati sono memorizzati localmente e non vengono sincronizzati automaticamente.</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">💡</div>Consigli e trucchi</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">❓</div><div class="card-title">Tutorial interattivo</div><div class="card-desc">Tocca l'icona «?» nella schermata principale o nelle Impostazioni per avviare una guida passo passo.</div></div>
+            <div class="card"><div class="card-icon">⭐</div><div class="card-title">Insiemi preferiti</div><div class="card-desc">Tocca l'icona della stella su un insieme per contrassegnarlo come preferito. Filtra la vista per mostrare solo i preferiti.</div></div>
+            <div class="card"><div class="card-icon">📁</div><div class="card-title">Archiviare</div><div class="card-desc">Archivia gli insiemi che non usi — scompaiono dall'elenco principale ma non vengono eliminati.</div></div>
+            <div class="card"><div class="card-icon">🔒</div><div class="card-title">Blocco estrazione</div><div class="card-desc">Imposta un tempo di attesa tra estrazioni consecutive — utile nei giochi e nelle sfide di gruppo.</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">🔒</div>Privacy e dati</div>
+        <div class="privacy-box">
+            <h3>✅ Cosa fa l'app con i tuoi dati</h3>
+            <ul>
+                <li>Tutti gli insiemi, le opzioni e la cronologia sono memorizzati <strong style="color:var(--text)">esclusivamente sul tuo dispositivo</strong> (SQLite).</li>
+                <li>L'app <strong style="color:var(--text)">non raccoglie né trasmette</strong> dati personali a server esterni.</li>
+                <li>Nessun account utente, nessun accesso, nessun cloud.</li>
+            </ul>
+            <br>
+            <h3>📢 Pubblicità (Google AdMob)</h3>
+            <ul>
+                <li>L'app mostra pubblicità Google AdMob per finanziare lo sviluppo.</li>
+                <li>Al primo avvio ti verrà chiesto di acconsentire alla pubblicità personalizzata o non personalizzata.</li>
+                <li>Puoi cambiare la tua scelta in Impostazioni → «Gestisci consenso annunci».</li>
+            </ul>
+            <br>
+            <p style="font-size:0.85rem">Informativa sulla privacy completa: <a href="privacy-it.html">privacy-it.html</a></p>
+        </div>
+        <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:8px;">
+            <span class="tag">Nessun account</span>
+            <span class="tag">Nessun cloud</span>
+            <span class="tag">Dati locali</span>
+            <span class="tag orange">Google AdMob</span>
+            <span class="tag">GDPR</span>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>Suggestio Mio &copy; 2026 &nbsp;·&nbsp;
+        <a href="privacy-it.html">Informativa sulla privacy</a> &nbsp;·&nbsp;
+        <a href="terms-it.html">Termini di utilizzo</a> &nbsp;·&nbsp;
+        <a href="index.html">Home</a>
+    </p>
+    <p style="margin-top:8px; color: var(--hint)">v1.0.0</p>
+</footer>
+
+</body>
+</html>

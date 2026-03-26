@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instrukcja Obsługi – Suggestio Mio</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0F172A;
+            --card: #1E293B;
+            --cyan: #00D9FF;
+            --orange: #FF8C00;
+            --pink: #FF4D6D;
+            --navy: #002855;
+            --success: #00FFD9;
+            --warning: #FFB800;
+            --error: #FF0055;
+            --text: #FFFFFF;
+            --text2: #B3B3B3;
+            --hint: #666666;
+            --border: #1E293B;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text2);
+            line-height: 1.7;
+        }
+        a { color: var(--cyan); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* LANG SWITCH */
+        .lang-bar {
+            background: var(--surface);
+            padding: 10px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .lang-bar a {
+            padding: 5px 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: var(--text2);
+            transition: all .2s;
+        }
+        .lang-bar a.active {
+            border-color: var(--cyan);
+            color: var(--cyan);
+            background: rgba(0,217,255,0.1);
+            box-shadow: 0 0 8px rgba(0,217,255,0.3);
+        }
+        .lang-bar a:hover { border-color: var(--cyan); color: var(--cyan); text-decoration: none; }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--surface) 50%, #0a0a1a 100%);
+            padding: 60px 20px 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at center, rgba(0,217,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--cyan), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+        .hero-sub {
+            font-size: 1.1rem;
+            color: var(--text2);
+            margin-bottom: 20px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0,217,255,0.1);
+            border: 1px solid rgba(0,217,255,0.3);
+            color: var(--cyan);
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* CONTAINER */
+        .container { max-width: 860px; margin: 0 auto; padding: 40px 20px; }
+
+        /* SECTION */
+        .section { margin-bottom: 50px; }
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--cyan), transparent);
+        }
+        .section-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--cyan), var(--navy));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            box-shadow: 0 0 12px rgba(0,217,255,0.3);
+        }
+
+        /* CARDS GRID */
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: transform .2s, box-shadow .2s;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0,217,255,0.12);
+            border-color: rgba(0,217,255,0.3);
+        }
+        .card-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .card-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .card-desc { font-size: 0.88rem; color: var(--text2); }
+
+        /* STEPS */
+        .steps { display: flex; flex-direction: column; gap: 16px; }
+        .step {
+            display: flex;
+            gap: 16px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 18px 20px;
+            align-items: flex-start;
+        }
+        .step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--cyan), var(--navy));
+            color: var(--bg);
+            font-weight: 800;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            box-shadow: 0 0 10px rgba(0,217,255,0.4);
+        }
+        .step-body {}
+        .step-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+        .step-desc { font-size: 0.88rem; color: var(--text2); }
+
+        /* ANIM TABLE */
+        .anim-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .anim-item {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 14px 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .anim-emoji { font-size: 1.5rem; }
+        .anim-name { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+        .anim-desc { font-size: 0.78rem; color: var(--hint); }
+
+        /* PRIVACY BOX */
+        .privacy-box {
+            background: linear-gradient(135deg, rgba(0,40,85,0.6), rgba(30,41,59,0.8));
+            border: 1px solid rgba(0,217,255,0.2);
+            border-radius: 16px;
+            padding: 24px;
+        }
+        .privacy-box h3 {
+            color: var(--cyan);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        .privacy-box ul { margin-left: 18px; }
+        .privacy-box li { margin-bottom: 6px; font-size: 0.9rem; }
+
+        /* HIGHLIGHT */
+        .highlight {
+            background: linear-gradient(135deg, rgba(255,140,0,0.1), rgba(255,77,109,0.05));
+            border: 1px solid rgba(255,140,0,0.3);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 0.9rem;
+            color: var(--text2);
+        }
+        .highlight strong { color: var(--orange); }
+
+        /* TAG */
+        .tag {
+            display: inline-block;
+            background: rgba(0,217,255,0.1);
+            border: 1px solid rgba(0,217,255,0.25);
+            color: var(--cyan);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            margin: 2px;
+        }
+        .tag.orange { background: rgba(255,140,0,0.1); border-color: rgba(255,140,0,0.3); color: var(--orange); }
+        .tag.pink { background: rgba(255,77,109,0.1); border-color: rgba(255,77,109,0.3); color: var(--pink); }
+
+        /* FOOTER */
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            padding: 30px 20px;
+            text-align: center;
+            color: var(--hint);
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--cyan); }
+
+        @media (max-width: 600px) {
+            .hero-title { font-size: 2rem; }
+            .cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="lang-bar">
+    <a href="help-pl.html" class="active">🇵🇱 PL</a>
+    <a href="help-en.html">🇬🇧 EN</a>
+    <a href="help-de.html">🇩🇪 DE</a>
+    <a href="help-fr.html">🇫🇷 FR</a>
+    <a href="help-es.html">🇪🇸 ES</a>
+    <a href="help-it.html">🇮🇹 IT</a>
+    <a href="help-pt.html">🇵🇹 PT</a>
+</div>
+
+<div class="hero">
+    <div class="hero-title">Suggestio Mio</div>
+    <div class="hero-sub">Instrukcja Obsługi Aplikacji</div>
+    <span class="hero-badge">✦ LOSUJ · DECYDUJ · ODKRYWAJ ✦</span>
+</div>
+
+<div class="container">
+
+    <!-- O APLIKACJI -->
+    <div class="section">
+        <div class="section-title">
+            <div class="section-icon">🎯</div>
+            O Aplikacji
+        </div>
+        <p><strong style="color:var(--text)">Suggestio Mio</strong> to inteligentna aplikacja do wspomagania decyzji i losowania opcji. Twórz zestawy z dowolnymi opcjami – posiłki, filmy, aktywności, wyzwania – a aplikacja wylosuje dla Ciebie wynik przy użyciu widowiskowej animacji. Idealna, gdy masz za dużo opcji i nie możesz się zdecydować!</p>
+        <div class="highlight">
+            <strong>Brak rejestracji, brak chmury.</strong> Wszystkie Twoje dane są przechowywane wyłącznie lokalnie na urządzeniu. Możesz tworzyć zestawy i losować bez dostępu do internetu.
+        </div>
+    </div>
+
+    <!-- FUNKCJE -->
+    <div class="section">
+        <div class="section-title">
+            <div class="section-icon">⚡</div>
+            Główne Funkcje
+        </div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">🎲</div>
+                <div class="card-title">Losowanie z animacją</div>
+                <div class="card-desc">9 stylów animacji: Karuzela, Shake, Automat, Ruletka, Karta, Rozmycie, Ticker, Maszyna do pisania, Odliczanie.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📦</div>
+                <div class="card-title">Zestawy opcji</div>
+                <div class="card-desc">Twórz i edytuj dowolną liczbę zestawów. Oznaczaj ulubione, archiwizuj nieużywane.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📋</div>
+                <div class="card-title">Szablony</div>
+                <div class="card-desc">Ponad 25 gotowych zestawów: posiłki, filmy, aktywności, gry, wyzwania, motywacja i więcej.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-title">Historia losowań</div>
+                <div class="card-desc">Pełna historia każdego zestawu z datą i godziną. Czytelny format czasu względnego.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔄</div>
+                <div class="card-title">Tryby losowania</div>
+                <div class="card-desc">Z powtórzeniami lub bez. Tryb bez powtórzeń śledzi, co zostało wylosowane.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">💾</div>
+                <div class="card-title">Kopia zapasowa</div>
+                <div class="card-desc">Eksportuj i importuj zestawy w formacie JSON. Udostępniaj kopie przez dowolną aplikację.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🎤</div>
+                <div class="card-title">Dyktowanie opcji</div>
+                <div class="card-desc">Dodawaj opcje głosem – wystarczy dotknąć ikony mikrofonu przy dodawaniu.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌐</div>
+                <div class="card-title">7 języków</div>
+                <div class="card-desc">Polski, angielski, francuski, niemiecki, hiszpański, portugalski, włoski.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAK UŻYWAĆ -->
+    <div class="section">
+        <div class="section-title">
+            <div class="section-icon">📖</div>
+            Jak Używać Aplikacji
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-body">
+                    <div class="step-title">Utwórz nowy zestaw</div>
+                    <div class="step-desc">Dotknij „+" na ekranie głównym lub skorzystaj z gotowego szablonu. Nadaj zestawowi nazwę i wybierz kolor.</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-body">
+                    <div class="step-title">Dodaj opcje</div>
+                    <div class="step-desc">Wpisz opcje ręcznie lub skorzystaj z głosowego wprowadzania (ikona mikrofonu). Minimum 2 opcje są wymagane.</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-body">
+                    <div class="step-title">Wybierz tryb i animację</div>
+                    <div class="step-desc">Wybierz tryb losowania (z/bez powtórzeń) oraz styl animacji. Ustaw czas trwania i liczbę cykli.</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-body">
+                    <div class="step-title">Dotknij LOSUJ</div>
+                    <div class="step-desc">Naciśnij duży przycisk LOSUJ i obserwuj animację. Wynik zostanie wyświetlony po zakończeniu.</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-body">
+                    <div class="step-title">Zatwierdź lub odrzuć</div>
+                    <div class="step-desc">Jeśli włączone jest potwierdzenie, możesz zaakceptować wynik lub losować ponownie.</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">6</div>
+                <div class="step-body">
+                    <div class="step-title">Sprawdź historię i status</div>
+                    <div class="step-desc">Ikona historii pokazuje wszystkie poprzednie losowania. Status opcji pokazuje, które zostały już wylosowane.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ANIMACJE -->
+    <div class="section">
+        <div class="section-title">
+            <div class="section-icon">✨</div>
+            Style Animacji
+        </div>
+        <div class="anim-list">
+            <div class="anim-item">
+                <div class="anim-emoji">🎠</div>
+                <div>
+                    <div class="anim-name">Karuzela</div>
+                    <div class="anim-desc">Karty przewijają się poziomo</div>
+                </div>
+            </div>
+            <div class="anim-item">
+                <div class="anim-emoji">🫨</div>
+                <div>
+                    <div class="anim-name">Shake</div>
+                    <div class="anim-desc">Karty drżą i wyłania się zwycięzca</div>
+                </div>
+            </div>
+            <div class="anim-item">
+                <div class="anim-emoji">🎰</div>
+                <div>
+                    <div class="anim-name">Automat</div>
+                    <div class="anim-desc">Styl jednorękiego bandyty</div>
+                </div>
+            </div>
+            <div class="anim-item">
+                <div class="anim-emoji">🎡</div>
+                <div>
+                    <div class="anim-name">Ruletka</div>
+                    <div class="anim-desc">Obracające się koło z segmentami</div>
+                </div>
+            </div>
+            <div class="anim-item">
+                <div class="anim-emoji">🃏</div>
+                <div>
+                    <div class="anim-name">Karta</div>
+                    <div class="anim-desc">Odwracanie karty z wynikiem</div>
+                </div>
+            </div>
+            <div class="anim-item">
+                <div class="anim-emoji">🌫️</div>
+                <div>
+                    <div class="anim-name">Rozmycie</div>
+                    <div class="anim-desc">Wynik pojawia się z rozmycia</div>
+                </div>
+            </div>
+            <div class="anim-item">
+                <div class="anim-emoji">📟</div>
+                <div>
+                    <div class="anim-name">Ticker</div>
+                    <div class="anim-desc">Tekst przesuwa się jak tablica</div>
+                </div>
+            </div>
+            <div class="anim-item">
+                <div class="anim-emoji">⌨️</div>
+                <div>
+                    <div class="anim-name">Maszyna do pisania</div>
+                    <div class="anim-desc">Wynik pojawia się znak po znaku</div>
+                </div>
+            </div>
+            <div class="anim-item">
+                <div class="anim-emoji">⏳</div>
+                <div>
+                    <div class="anim-name">Odliczanie</div>
+                    <div class="anim-desc">Klasyczne odliczanie 3–2–1</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TRYBY LOSOWANIA -->
+    <div class="section">
+        <div class="section-title">
+            <div class="section-icon">🎯</div>
+            Tryby Losowania
+        </div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">🔁</div>
+                <div class="card-title">Z Powtórzeniami</div>
+                <div class="card-desc">Każde losowanie jest niezależne. Każda opcja może wypaść wielokrotnie. <br><br><span class="tag">Inteligentna blokada</span> – ta sama opcja nie wypadnie trzy razy z rzędu, jeśli istnieje inna dostępna.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">✅</div>
+                <div class="card-title">Bez Powtórzeń</div>
+                <div class="card-desc">Każda opcja może być wylosowana tylko raz. Po wyczerpaniu puli możesz ją zresetować. <br><br>Ekran statusu pokazuje wylosowane i pozostałe opcje.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- USTAWIENIA -->
+    <div class="section">
+        <div class="section-title">
+            <div class="section-icon">⚙️</div>
+            Ustawienia
+        </div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">🌍</div>
+                <div class="card-title">Język</div>
+                <div class="card-desc">Wybierz jeden z 7 języków interfejsu. Zmiana następuje natychmiast.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌙</div>
+                <div class="card-title">Motyw</div>
+                <div class="card-desc">Ciemny, jasny lub systemowy. Motyw ciemny z neonowymi akcentami jest domyślny.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <div class="card-title">Ekran startowy</div>
+                <div class="card-desc">Aplikacja może startować od listy zestawów lub ostatnio użytego zestawu.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📳</div>
+                <div class="card-title">Wibracje i dźwięki</div>
+                <div class="card-desc">Włącz lub wyłącz wibracje przy przyciskach i losowaniu oraz dźwięki animacji.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🕐</div>
+                <div class="card-title">Format czasu</div>
+                <div class="card-desc">Wyświetlaj historię jako czas względny (5m temu) lub pełną datę i godzinę.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📜</div>
+                <div class="card-title">Limit historii</div>
+                <div class="card-desc">Wyświetlaj 10 ostatnich wpisów lub pełną historię zestawu.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KOPIA ZAPASOWA -->
+    <div class="section">
+        <div class="section-title">
+            <div class="section-icon">💾</div>
+            Kopia Zapasowa i Przywracanie
+        </div>
+        <div class="steps">
+            <div class="step">
+                <div class="step-num">📤</div>
+                <div class="step-body">
+                    <div class="step-title">Eksport</div>
+                    <div class="step-desc">W Ustawieniach dotknij „Eksportuj zestawy". Plik JSON zostanie zapisany lub udostępniony przez Twoją aplikację do plików / dysk / e-mail.</div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">📥</div>
+                <div class="step-body">
+                    <div class="step-title">Import</div>
+                    <div class="step-desc">Dotknij „Importuj zestawy" i wybierz wcześniej wyeksportowany plik JSON. Zestawy zostaną dodane do aplikacji.</div>
+                </div>
+            </div>
+        </div>
+        <div class="highlight">
+            <strong>Wskazówka:</strong> Regularnie wykonuj kopię zapasową przed odinstalowaniem aplikacji lub zmianą urządzenia – dane są przechowywane lokalnie i nie są synchronizowane automatycznie.
+        </div>
+    </div>
+
+    <!-- PRYWATNOŚĆ -->
+    <div class="section">
+        <div class="section-title">
+            <div class="section-icon">🔒</div>
+            Prywatność i Dane
+        </div>
+        <div class="privacy-box">
+            <h3>✅ Co aplikacja robi z Twoimi danymi</h3>
+            <ul>
+                <li>Wszystkie zestawy, opcje i historia są przechowywane <strong style="color:var(--text)">wyłącznie na Twoim urządzeniu</strong> (SQLite).</li>
+                <li>Aplikacja <strong style="color:var(--text)">nie zbiera ani nie przesyła</strong> żadnych danych osobowych na zewnętrzne serwery.</li>
+                <li>Brak konta użytkownika, brak logowania, brak chmury.</li>
+            </ul>
+            <br>
+            <h3>📢 Reklamy (Google AdMob)</h3>
+            <ul>
+                <li>Aplikacja wyświetla reklamy od Google AdMob w celu finansowania rozwoju.</li>
+                <li>Przy pierwszym uruchomieniu zostaniesz zapytany o zgodę na reklamy spersonalizowane lub niespersonalizowane.</li>
+                <li>Możesz zmienić decyzję w Ustawieniach → „Zarządzaj zgodą na reklamy".</li>
+            </ul>
+            <br>
+            <p style="font-size:0.85rem">Pełna polityka prywatności: <a href="index.html">index.html</a></p>
+        </div>
+        <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:8px;">
+            <span class="tag">Brak konta</span>
+            <span class="tag">Brak chmury</span>
+            <span class="tag">Dane lokalne</span>
+            <span class="tag orange">Google AdMob</span>
+            <span class="tag">RODO</span>
+        </div>
+    </div>
+
+    <!-- WSKAZÓWKI -->
+    <div class="section">
+        <div class="section-title">
+            <div class="section-icon">💡</div>
+            Wskazówki i Porady
+        </div>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">❓</div>
+                <div class="card-title">Interaktywny tutorial</div>
+                <div class="card-desc">Dotknij ikony „?" na ekranie głównym lub w Ustawieniach, aby uruchomić krok po kroku przewodnik po funkcjach.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">⭐</div>
+                <div class="card-title">Ulubione zestawy</div>
+                <div class="card-desc">Dotknij ikony gwiazdki na zestawie, aby oznaczyć go jako ulubiony. Filtruj widok do samych ulubionych.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📁</div>
+                <div class="card-title">Archiwizacja</div>
+                <div class="card-desc">Zestawy, których nie używasz, możesz zarchiwizować – znikną z głównej listy, ale nie zostaną usunięte.</div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <div class="card-title">Blokada losowania</div>
+                <div class="card-desc">Ustaw czas oczekiwania między kolejnymi losowaniami – przydatne w grach i wyzwaniach grupowych.</div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>Suggestio Mio &copy; 2026 &nbsp;·&nbsp;
+        <a href="index.html">Polityka Prywatności</a> &nbsp;·&nbsp;
+        <a href="terms.html">Warunki Użytkowania</a> &nbsp;·&nbsp;
+        <a href="index.html">Strona Główna</a>
+    </p>
+    <p style="margin-top:8px; color: var(--hint)">v1.0.0</p>
+</footer>
+
+</body>
+</html>

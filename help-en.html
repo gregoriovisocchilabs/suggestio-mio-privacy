@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Guide – Suggestio Mio</title>
+    <style>
+        :root {
+            --bg: #050505;
+            --surface: #0F172A;
+            --card: #1E293B;
+            --cyan: #00D9FF;
+            --orange: #FF8C00;
+            --pink: #FF4D6D;
+            --navy: #002855;
+            --success: #00FFD9;
+            --warning: #FFB800;
+            --error: #FF0055;
+            --text: #FFFFFF;
+            --text2: #B3B3B3;
+            --hint: #666666;
+            --border: #1E293B;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text2); line-height: 1.7; }
+        a { color: var(--cyan); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .lang-bar { background: var(--surface); padding: 10px 20px; display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; border-bottom: 1px solid var(--border); }
+        .lang-bar a { padding: 5px 12px; border: 1px solid var(--border); border-radius: 20px; font-size: 0.8rem; color: var(--text2); transition: all .2s; }
+        .lang-bar a.active { border-color: var(--cyan); color: var(--cyan); background: rgba(0,217,255,0.1); box-shadow: 0 0 8px rgba(0,217,255,0.3); }
+        .lang-bar a:hover { border-color: var(--cyan); color: var(--cyan); text-decoration: none; }
+        .hero { background: linear-gradient(135deg, var(--navy) 0%, var(--surface) 50%, #0a0a1a 100%); padding: 60px 20px 50px; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at center, rgba(0,217,255,0.08) 0%, transparent 60%); pointer-events: none; }
+        .hero-title { font-size: 2.8rem; font-weight: 800; background: linear-gradient(90deg, var(--cyan), var(--orange)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 8px; letter-spacing: -1px; }
+        .hero-sub { font-size: 1.1rem; color: var(--text2); margin-bottom: 20px; }
+        .hero-badge { display: inline-block; background: rgba(0,217,255,0.1); border: 1px solid rgba(0,217,255,0.3); color: var(--cyan); padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; letter-spacing: 1px; }
+        .container { max-width: 860px; margin: 0 auto; padding: 40px 20px; }
+        .section { margin-bottom: 50px; }
+        .section-title { font-size: 1.6rem; font-weight: 700; color: var(--text); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--cyan), transparent); }
+        .section-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--cyan), var(--navy)); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; box-shadow: 0 0 12px rgba(0,217,255,0.3); }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; transition: transform .2s, box-shadow .2s; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,217,255,0.12); border-color: rgba(0,217,255,0.3); }
+        .card-icon { font-size: 1.8rem; margin-bottom: 10px; }
+        .card-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+        .card-desc { font-size: 0.88rem; color: var(--text2); }
+        .steps { display: flex; flex-direction: column; gap: 16px; }
+        .step { display: flex; gap: 16px; background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 18px 20px; align-items: flex-start; }
+        .step-num { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--navy)); color: var(--bg); font-weight: 800; font-size: 0.95rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 0 10px rgba(0,217,255,0.4); }
+        .step-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+        .step-desc { font-size: 0.88rem; color: var(--text2); }
+        .anim-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .anim-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+        .anim-emoji { font-size: 1.5rem; }
+        .anim-name { font-size: 0.9rem; font-weight: 700; color: var(--text); }
+        .anim-desc { font-size: 0.78rem; color: var(--hint); }
+        .privacy-box { background: linear-gradient(135deg, rgba(0,40,85,0.6), rgba(30,41,59,0.8)); border: 1px solid rgba(0,217,255,0.2); border-radius: 16px; padding: 24px; }
+        .privacy-box h3 { color: var(--cyan); font-size: 1rem; margin-bottom: 10px; }
+        .privacy-box ul { margin-left: 18px; }
+        .privacy-box li { margin-bottom: 6px; font-size: 0.9rem; }
+        .highlight { background: linear-gradient(135deg, rgba(255,140,0,0.1), rgba(255,77,109,0.05)); border: 1px solid rgba(255,140,0,0.3); border-radius: 12px; padding: 16px 20px; margin: 16px 0; font-size: 0.9rem; color: var(--text2); }
+        .highlight strong { color: var(--orange); }
+        .tag { display: inline-block; background: rgba(0,217,255,0.1); border: 1px solid rgba(0,217,255,0.25); color: var(--cyan); padding: 3px 10px; border-radius: 20px; font-size: 0.78rem; margin: 2px; }
+        .tag.orange { background: rgba(255,140,0,0.1); border-color: rgba(255,140,0,0.3); color: var(--orange); }
+        footer { background: var(--surface); border-top: 1px solid var(--border); padding: 30px 20px; text-align: center; color: var(--hint); font-size: 0.85rem; }
+        footer a { color: var(--cyan); }
+        @media (max-width: 600px) { .hero-title { font-size: 2rem; } .cards { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+<div class="lang-bar">
+    <a href="help-pl.html">🇵🇱 PL</a>
+    <a href="help-en.html" class="active">🇬🇧 EN</a>
+    <a href="help-de.html">🇩🇪 DE</a>
+    <a href="help-fr.html">🇫🇷 FR</a>
+    <a href="help-es.html">🇪🇸 ES</a>
+    <a href="help-it.html">🇮🇹 IT</a>
+    <a href="help-pt.html">🇵🇹 PT</a>
+</div>
+
+<div class="hero">
+    <div class="hero-title">Suggestio Mio</div>
+    <div class="hero-sub">User Guide</div>
+    <span class="hero-badge">✦ DRAW · DECIDE · DISCOVER ✦</span>
+</div>
+
+<div class="container">
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">🎯</div>About the App</div>
+        <p><strong style="color:var(--text)">Suggestio Mio</strong> is a smart decision-making and random picker app. Create sets with any options — meals, movies, activities, challenges — and let the app draw a result using a spectacular animation. Perfect when you have too many options and can't make up your mind!</p>
+        <div class="highlight">
+            <strong>No registration, no cloud.</strong> All your data is stored exclusively on your device. You can create sets and draw results offline.
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">⚡</div>Key Features</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">🎲</div><div class="card-title">Animated Drawing</div><div class="card-desc">9 animation styles: Carousel, Shake, Slot Machine, Roulette, Flip Card, Blur Reveal, Ticker, Typewriter, Countdown.</div></div>
+            <div class="card"><div class="card-icon">📦</div><div class="card-title">Option Sets</div><div class="card-desc">Create and edit any number of sets. Mark favorites, archive unused ones.</div></div>
+            <div class="card"><div class="card-icon">📋</div><div class="card-title">Templates</div><div class="card-desc">25+ ready-made sets: meals, movies, activities, games, challenges, motivation and more.</div></div>
+            <div class="card"><div class="card-icon">📊</div><div class="card-title">Draw History</div><div class="card-desc">Full history for every set with date and time. Clean relative time format.</div></div>
+            <div class="card"><div class="card-icon">🔄</div><div class="card-title">Draw Modes</div><div class="card-desc">With or without repetition. The no-repeat mode tracks what has been drawn.</div></div>
+            <div class="card"><div class="card-icon">💾</div><div class="card-title">Backup</div><div class="card-desc">Export and import sets as JSON. Share backups via any app.</div></div>
+            <div class="card"><div class="card-icon">🎤</div><div class="card-title">Voice Input</div><div class="card-desc">Add options by voice — tap the microphone icon when adding an option.</div></div>
+            <div class="card"><div class="card-icon">🌐</div><div class="card-title">7 Languages</div><div class="card-desc">Polish, English, French, German, Spanish, Portuguese, Italian.</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">📖</div>How to Use</div>
+        <div class="steps">
+            <div class="step"><div class="step-num">1</div><div><div class="step-title">Create a new set</div><div class="step-desc">Tap "+" on the main screen or use a ready-made template. Give your set a name and choose a color.</div></div></div>
+            <div class="step"><div class="step-num">2</div><div><div class="step-title">Add options</div><div class="step-desc">Type options manually or use voice input (microphone icon). At least 2 options are required.</div></div></div>
+            <div class="step"><div class="step-num">3</div><div><div class="step-title">Choose mode and animation</div><div class="step-desc">Select draw mode (with/without repetition) and animation style. Set duration and cycle count.</div></div></div>
+            <div class="step"><div class="step-num">4</div><div><div class="step-title">Tap DRAW</div><div class="step-desc">Press the large DRAW button and watch the animation. The result is shown when the animation ends.</div></div></div>
+            <div class="step"><div class="step-num">5</div><div><div class="step-title">Confirm or redraw</div><div class="step-desc">If confirmation is enabled, you can accept the result or draw again.</div></div></div>
+            <div class="step"><div class="step-num">6</div><div><div class="step-title">Check history and status</div><div class="step-desc">The history icon shows all past draws. The options status screen shows which have been drawn already.</div></div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">✨</div>Animation Styles</div>
+        <div class="anim-list">
+            <div class="anim-item"><div class="anim-emoji">🎠</div><div><div class="anim-name">Carousel</div><div class="anim-desc">Cards scroll horizontally</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">🫨</div><div><div class="anim-name">Shake</div><div class="anim-desc">Cards shake, winner emerges</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">🎰</div><div><div class="anim-name">Slot Machine</div><div class="anim-desc">One-armed bandit style</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">🎡</div><div><div class="anim-name">Roulette</div><div class="anim-desc">Spinning wheel with segments</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">🃏</div><div><div class="anim-name">Flip Card</div><div class="anim-desc">Card flips to reveal result</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">🌫️</div><div><div class="anim-name">Blur Reveal</div><div class="anim-desc">Result emerges from blur</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">📟</div><div><div class="anim-name">Ticker</div><div class="anim-desc">Text scrolls like a board</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">⌨️</div><div><div class="anim-name">Typewriter</div><div class="anim-desc">Result types out letter by letter</div></div></div>
+            <div class="anim-item"><div class="anim-emoji">⏳</div><div><div class="anim-name">Countdown</div><div class="anim-desc">Classic 3–2–1 countdown</div></div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">🎯</div>Draw Modes</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">🔁</div><div class="card-title">With Repetition</div><div class="card-desc">Each draw is independent. Any option can appear multiple times. <br><br><span class="tag">Smart lock</span> – same option won't appear three times in a row if another is available.</div></div>
+            <div class="card"><div class="card-icon">✅</div><div class="card-title">Without Repetition</div><div class="card-desc">Each option can only be drawn once. After the pool is exhausted you can reset it. <br><br>The status screen shows drawn and remaining options.</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">⚙️</div>Settings</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">🌍</div><div class="card-title">Language</div><div class="card-desc">Choose one of 7 interface languages. Changes apply immediately.</div></div>
+            <div class="card"><div class="card-icon">🌙</div><div class="card-title">Theme</div><div class="card-desc">Dark, light, or system. The dark neon theme is the default.</div></div>
+            <div class="card"><div class="card-icon">📱</div><div class="card-title">Start Screen</div><div class="card-desc">App can start from the sets list or the last-used set.</div></div>
+            <div class="card"><div class="card-icon">📳</div><div class="card-title">Vibration & Sound</div><div class="card-desc">Toggle vibrations on buttons and draws, and animation sounds.</div></div>
+            <div class="card"><div class="card-icon">🕐</div><div class="card-title">Time Format</div><div class="card-desc">Show history as relative time (5m ago) or full date and time.</div></div>
+            <div class="card"><div class="card-icon">📜</div><div class="card-title">History Limit</div><div class="card-desc">Show the last 10 entries or the full draw history.</div></div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">💾</div>Backup & Restore</div>
+        <div class="steps">
+            <div class="step"><div class="step-num">📤</div><div><div class="step-title">Export</div><div class="step-desc">In Settings tap "Export Sets". A JSON file will be saved or shared via your file/drive/email app.</div></div></div>
+            <div class="step"><div class="step-num">📥</div><div><div class="step-title">Import</div><div class="step-desc">Tap "Import Sets" and select a previously exported JSON file. Sets will be added to the app.</div></div></div>
+        </div>
+        <div class="highlight"><strong>Tip:</strong> Back up regularly before uninstalling or switching devices – data is stored locally and not automatically synced.</div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">🔒</div>Privacy & Data</div>
+        <div class="privacy-box">
+            <h3>✅ What the app does with your data</h3>
+            <ul>
+                <li>All sets, options, and history are stored <strong style="color:var(--text)">exclusively on your device</strong> (SQLite).</li>
+                <li>The app <strong style="color:var(--text)">does not collect or transmit</strong> any personal data to external servers.</li>
+                <li>No user account, no login, no cloud.</li>
+            </ul>
+            <br>
+            <h3>📢 Ads (Google AdMob)</h3>
+            <ul>
+                <li>The app shows Google AdMob ads to fund development.</li>
+                <li>On first launch you'll be asked to consent to personalised or non-personalised ads.</li>
+                <li>You can change your choice in Settings → "Manage Ad Consent".</li>
+            </ul>
+            <br>
+            <p style="font-size:0.85rem">Full privacy policy: <a href="privacy-en.html">privacy-en.html</a></p>
+        </div>
+        <div style="margin-top:12px; display:flex; flex-wrap:wrap; gap:8px;">
+            <span class="tag">No account</span>
+            <span class="tag">No cloud</span>
+            <span class="tag">Local data</span>
+            <span class="tag orange">Google AdMob</span>
+            <span class="tag">GDPR</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title"><div class="section-icon">💡</div>Tips & Tricks</div>
+        <div class="cards">
+            <div class="card"><div class="card-icon">❓</div><div class="card-title">Interactive Tutorial</div><div class="card-desc">Tap the "?" icon on the main screen or in Settings to launch a step-by-step guide.</div></div>
+            <div class="card"><div class="card-icon">⭐</div><div class="card-title">Favourite Sets</div><div class="card-desc">Tap the star icon on a set to mark it as a favourite. Filter the view to show only favourites.</div></div>
+            <div class="card"><div class="card-icon">📁</div><div class="card-title">Archive</div><div class="card-desc">Archive sets you're not using — they disappear from the main list but aren't deleted.</div></div>
+            <div class="card"><div class="card-icon">🔒</div><div class="card-title">Draw Lock</div><div class="card-desc">Set a waiting time between consecutive draws — useful in group games and challenges.</div></div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>Suggestio Mio &copy; 2026 &nbsp;·&nbsp;
+        <a href="privacy-en.html">Privacy Policy</a> &nbsp;·&nbsp;
+        <a href="terms-en.html">Terms of Use</a> &nbsp;·&nbsp;
+        <a href="index.html">Home</a>
+    </p>
+    <p style="margin-top:8px; color: var(--hint)">v1.0.0</p>
+</footer>
+
+</body>
+</html>
